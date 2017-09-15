@@ -11,14 +11,14 @@
 						<nav id="nav">
 							<ul>
 								<li class=<?php if($_GET['module']==="main") echo "current"?>><a href="index.php?module=main">Home</a></li>
-								<li>
+								<li class=<?php if($_GET['module']==="travels") echo "current"?>>
 									<a href="#">Alta</a>
 									<ul>
 										<li><a href="#">Users</a></li>
 										<li>
 											<a href="#">Products</a>
 											<ul>
-												<li><a href="#">Travel</a></li>
+												<li ><a href="index.php?module=travels">Travel</a></li>
 												<li><a href="#">Visit</a></li>
 												<li><a href="#">More</a></li>
 											</ul>

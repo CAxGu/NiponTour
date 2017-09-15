@@ -2,7 +2,7 @@
 	require_once("view/inc/top_page.php"); 
 	require_once("view/inc/menu.php");
 	
-	//include 'utils/utils.inc.php';
+	include 'utils/utils.inc.php';
 	
 	session_start();
 
