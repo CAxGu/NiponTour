@@ -1,30 +1,28 @@
-<?php
+<section id="contact-page">
+    <div class="container">
+        <div class="center">        
+            <h2>Añadie Viajes</h2>
+            <p class="lead">Ultimo viaje agregado.</p>
+        </div> 
+        <div class="row contact-wrap"> 
+            <div class="status alert alert-success" style="display: none"></div>
+            <?php
+            $travel = $_SESSION['idviaje'];
+            $msage = $_SESSION['msje'];
 
-	echo "<br>";
-	echo "<br>";
-	echo "<br>";
-	echo "<br>";
-	
-	//echo "<pre>";
-	//print_r($_POST);
-	//echo "</pre>";
-	debugPHP($_POST);
-		
-		
-	//echo "<pre>";
-	//print_r($_SESSION);
-	//echo "</pre>";
-	debugPHP($_SESSION);
-	//die();
-
-		foreach ($_SESSION as $indice => $valor){
-			if($indice==="tipo"){
-				echo "<br>Tipo:<br>";
-				$gustos = $_SESSION["tipo"];
-				foreach ($gustos as $indice => $valor) 
-					echo "$indice: $valor<br>";
-			}else{
-				echo "$indice: $valor<br>";
-			}
-		}
-		
+            foreach ($travel as $indice => $valor) {
+                if ($indice == 'tipo') {
+                    echo "<br><b>Tipo:</b><br>";
+                    $tipo = $travel['interests'];
+                    foreach ($tipo as $indice => $valor) {
+                        echo "<b>---> $indice</b>: $valor<br>";
+                    }
+                } else {
+                    echo "<br><b>$indice</b>: $valor";
+                }
+            }
+            echo "<br>" . "<b style='color:green'>" . $msage;
+            ?>
+        </div><!--/.row-->
+    </div><!--/.container-->
+</section><!--/#contact-page-->
