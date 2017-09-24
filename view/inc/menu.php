@@ -62,11 +62,11 @@
                                  echo 'deactivate';
                         ?>"><a href="index.php?module=services">Services</a></li>
                         <li class="
-                        <?php if($_GET['module'] === 'users')
+                        <?php if($_GET['module'] === 'travels')
                                  echo'active';
                               else
                                  echo 'deactivate';
-                        ?>"><a href="index.php?module=users&view=create_users">Travels</a></li>
+                        ?>"><a href="index.php?module=travels&view=create_travels">Travels</a></li>
                         <li class="
                         <?php if($_GET['module'] === 'portfolio')
                                  echo'active';

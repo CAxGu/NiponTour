@@ -1,7 +1,7 @@
 <?php
 session_start();
 //include  with absolute route
-include ($_SERVER["DOCUMENT_ROOT"] . "/2ndoDAW/NiponTour/modules/users/utils/functions_user.inc.php");
+include ($_SERVER["DOCUMENT_ROOT"] . "/2ndoDAW/NiponTour/modules/travels/utils/functions_travels.inc.php");
 include ($_SERVER["DOCUMENT_ROOT"] . "/2ndoDAW/NiponTour/utils/upload.php");
 
 //////////////////////////////////////////////////////////////// upload
@@ -12,14 +12,14 @@ if ((isset($_GET["upload"])) && ($_GET["upload"] == true)) {
 }
 
 //////////////////////////////////////////////////////////////// alta_users_json
-if ((isset($_POST["alta_users_json"]))) {
-    alta_users();
+if ((isset($_POST["alta_travels_json"]))) {
+    alta_travels();
 }
 
-function alta_users() {
+function alta_travels() {
     $jsondata = array();
-    $usersJSON = json_decode($_POST["alta_users_json"], true);
-    $result = validate_user($usersJSON);
+    $travelsJSON = json_decode($_POST["alta_travels_json"], true);
+    $result = validate_travel($travelsJSON);
     
     if (empty($_SESSION["result_avatar"])) {
         $_SESSION["result_avatar"] = array("resultado" => true, "error" => "", "datos" => "media/default-avatar.png");
@@ -43,7 +43,7 @@ function alta_users() {
         //redirigir a otra p�gina con los datos de $arrArgument y $mensaje
         $_SESSION["travel"] = $arrArgument;
         $_SESSION["msje"] = $mensaje;
-        $callback = "index.php?module=users&view=results_users";
+        $callback = "index.php?module=travels&view=results_travels";
 
         $jsondata["success"] = true;
         $jsondata["redirect"] = $callback;

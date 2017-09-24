@@ -2,7 +2,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/dropzone.css">
 <!-- Script with absolute route -->
-<script type="text/javascript" src="modules/users/view/js/users.js" ></script>
+<script type="text/javascript" src="modules/travels/view/js/travels.js" ></script>
 <section id="contact-page">
     <div class="container">
         <div class="center">  
@@ -15,7 +15,7 @@
 
             <form id="form_user" name="form_user"><!---->
                 <div class ="form-group">
-                    <input type="hidden" name="alta_users" value="alta_users">
+                    <input type="hidden" name="alta_travels" value="alta_travels">
                 </div>
                 <div class="col-sm-5 col-sm-offset-1">
                     <div class="form-group">
@@ -87,7 +87,7 @@
                     <br/>
                     
                     <div class="form-group">
-                        <button type="button" id="submit_user" name="submit_user" class="btn btn-primary btn-lg" value="submit">Alta</button>
+                        <button type="button" id="submit_travel" name="submit_travel" class="btn btn-primary btn-lg" value="submit">Alta</button>
                     </div>
                 </div>
             </form> 

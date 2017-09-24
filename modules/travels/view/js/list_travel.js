@@ -1,8 +1,8 @@
-function load_users() {
-    var jqxhr = $.get("modules/users/controller/controller_users.class.php?load=true", function (data) {
+function load_travels() {
+    var jqxhr = $.get("modules/travels/controller/controller_travels.class.php?load=true", function (data) {
         var json = JSON.parse(data);
         console.log(json);
-        pintar_user(json);
+        pintar_travel(json);
         //alert( "success" );
     }).done(function () {
         //alert( "second success" );
@@ -17,10 +17,10 @@ function load_users() {
 }
 
 $(document).ready(function () {
-    load_users();
+    load_travels();
 });
 
-function pintar_user(data) {
+function pintar_travel(data) {
     //alert(data.user.avatar);
     var content = document.getElementById("content");
     var div_viaje = document.createElement("div");

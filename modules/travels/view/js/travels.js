@@ -70,25 +70,34 @@ $(document).ready(function () {
         maxDate: '+3Y',
         dateFormat: 'mm-dd-yy',
         changeMonth: true,
-        changeYear: true
-        });
+        changeYear: true,
+        onSelect: function (date) {
+            var f_lleg = $('#f_lleg');
+            var startDate = $(this).datepicker('getDate');
+            var minDate = $(this).datepicker('getDate');
+            f_lleg.datepicker('option', 'minDate', minDate);
+        }
+    });
+    $('#f_lleg').datepicker({
+        dateFormat: "mm-dd-yy"
+    });
 
-    $( "#f_lleg" ).datepicker({
+/*     $( "#f_lleg" ).datepicker({
         minDate: '0D+1',
         maxDate: '+3Y',
         dateFormat: 'mm-dd-yy',
         changeMonth: true,
         changeYear: true
-        });
+        });*/
     } );
-
+ 
     //Valida users /////////////////////////
-    $('#submit_user').click(function () {
-        validate_user();
+    $('#submit_travel').click(function () {
+        validate_travel();
     });
 
     //Control de seguridad para evitar que al volver atrás de la pantalla results a create, no nos imprima los datos
-    $.get("modules/users/controller/controller_users.class.php?load_data=true",
+    $.get("modules/travels/controller/controller_travels.class.php?load_data=true",
             function (response) {
                 //alert(response.user);
                 if (response.travel === "") {
@@ -123,7 +132,7 @@ $(document).ready(function () {
             }, "json");
     //Dropzone function //////////////////////////////////
     $("#dropzone").dropzone({
-        url: "modules/users/controller/controller_users.class.php?upload=true",
+        url: "modules/travels/controller/controller_travels.class.php?upload=true",
         addRemoveLinks: true,
         maxFileSize: 1000,
         dictResponseError: "Ha ocurrido un error en el server",
@@ -150,7 +159,7 @@ $(document).ready(function () {
             var name = file.name;
             $.ajax({
                 type: "POST",
-                url: "modules/users/controller/controller_users.class.php?delete=true",
+                url: "modules/travels/controller/controller_travels.class.php?delete=true",
                 data: "filename=" + name,
                 success: function (data) {
                     $("#progress").hide();
@@ -209,7 +218,7 @@ $(document).ready(function () {
     });
 });
 
-function validate_user() {
+function validate_travel() {
     var result = true;
 
     var idviaje = document.getElementById('idviaje').value;
@@ -286,10 +295,10 @@ function validate_user() {
     if (result) {
         var data = {"idviaje": idviaje, "destino": destino, "precio": precio, "oferta": oferta, "tipo": tipo, "f_sal": f_sal, "f_lleg": f_lleg};
             
-        var data_users_JSON = JSON.stringify(data);
-        console.log(data_users_JSON);
-        $.post('modules/users/controller/controller_users.class.php',
-                {alta_users_json: data_users_JSON},
+        var data_travels_JSON = JSON.stringify(data);
+        console.log(data_travels_JSON);
+        $.post('modules/travels/controller/controller_travels.class.php',
+                {alta_travels_json: data_travels_JSON},
         function (response) {
             console.log("0"+ response);
             if (response.success) {

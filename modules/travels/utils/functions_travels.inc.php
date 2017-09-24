@@ -1,5 +1,5 @@
 <?php
-	function validate_user($value){
+	function validate_travel($value){
         $error= array();
         $valido = true;
 		$filtro = array(
@@ -33,19 +33,10 @@
 		);
 		
         $resultado=filter_var_array($value,$filtro);
- 
-    
-        if ($resultado['f_sal'] && $resultado['f_lleg']) {
-            $dates = valida_dates($_POST['f_sal'], $_POST['f_lleg']);
-    
-            if (!$dates) {
-                $error['f_lleg'] = 'La fecha de llegada debe ser posterior a la de salida.';
-                $valido = false;
-            }
-        }
         
-        $resultado['oferta'] = $_POST['oferta'];
-        $resultado['destino'] = $_POST['destino'];
+        $resultado['oferta'] = $value['oferta'];
+        $resultado['destino'] = $value['destino'];
+        $resultado['tipo'] = $value['tipo'];
 
         if ($_POST['destino'] === '') {
             $error['destino'] = "Debes elegir un destino";
@@ -80,7 +71,7 @@
                     $error['f_sal'] = "Este campo no puede estar vacio";
                     $valido = false;  
              }else{
-                    $error['f_sal'] = 'Error en el formato de la fecha (mmm/dd/yyyy)';
+                    $error['f_sal'] = 'Error en el formato de la fecha (mm/dd/yyyy)';
                     $valido = false;
                 }
             }
