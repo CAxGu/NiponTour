@@ -5,30 +5,30 @@
 		$filtro = array(
 			'idviaje' => array(
 				'filter'=>FILTER_VALIDATE_REGEXP,
-				'options'=>array('regexp'=>'/^([A-Z]{1}[0-9]{1,4})*$/')
+				'options'=>array('regexp' => '/^([A-Z]{1}[0-9]{1,4})*$/')
 			),
 
 			'precio' => array(
 				'filter'=>FILTER_VALIDATE_REGEXP,
-				'options'=>array('regexp'=>'/^[0-9]{2,4}$/')
+				'options'=>array('regexp' => '/^([0-9]{2,4})*$/')
 			),
 
 
 			'f_sal' => array(
 				'filter'=>FILTER_VALIDATE_REGEXP,
-				'options' => array('regexp' => '/^(0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])[- \/.](19|20)\d\d$/')
+				'options' => array('regexp' => '/^(0?[1-9]|1[0-2])[-](0?[1-9]|[12]\d|3[01])[-](19|20)\d{2}$/')
 			),
 
 
 			'f_lleg' => array(
 				'filter' => FILTER_VALIDATE_REGEXP,
-				'options' => array('regexp' => '/^(0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])[- \/.](19|20)\d\d$/')
+				'options' => array('regexp' => '/^(0?[1-9]|1[0-2])[-](0?[1-9]|[12]\d|3[01])[-](19|20)\d{2}$/')
             ),
             
             'tipo' => array(
 				'filter' => FILTER_CALLBACK,
 				'options' => 'validate_tipo'
-			)
+			),
 					
 		);
 		
@@ -59,12 +59,6 @@
                 $error['precio'] = 'El precio debe tener entre 2 y 4 cifras';
                 $valido = false;
             }
-    
-            if (!$resultado['precio']) {
-                $error['precio'] = 'El precio debe tener entre 2 y 4 cifras';
-                $valido = false;
-            }
-            
            
             if (!$resultado['f_sal']) {
                 if($_POST['f_sal'] == ""){

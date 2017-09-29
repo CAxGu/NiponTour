@@ -96,7 +96,7 @@ function upload_files() {
             return $return=array('resultado'=>true , 'error'=>$error,'datos'=>$upfile);
         }
         if($_FILES['file']['error'] !== 0) { //Assignarem a l'us default-avatar
-            $upfile = '/2ndoDAW/NiponTour/media/default-avatar.png';
+            $upfile = $_SERVER['DOCUMENT_ROOT'].'/2ndoDAW/NiponTour/media/default-avatar.png';
             return $return=array('resultado'=>true,'error'=>$error,'datos'=>$upfile);
         }
     }else{

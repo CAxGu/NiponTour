@@ -124,7 +124,7 @@ $(document).ready(function () {
                     var inputElements = document.getElementsByClassName('messageCheckbox');
                     for (var i = 0; i < inputElements.length; i++) { //////////////////////////////////////
                         for (var j = 0; j < inputElements.length; j++) {
-                            if(interests[i] ===inputElements[j] )
+                            if(tipo[i] ===inputElements[j] )
                                 inputElements[j].checked = true;
                         }
                     }
@@ -190,8 +190,8 @@ $(document).ready(function () {
     });
 
     //Utilizamos las expresiones regulares para las funciones de  fadeout
-    var date_reg = /^(0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])[- \/.](19|20)\d\d$/;
-    var precio_ref = /^[0-9]{2,4}$/;
+    var date_reg = /^(0?[1-9]|1[0-2])[-](0?[1-9]|[12]\d|3[01])[-](19|20)\d{2}$/;
+    var precio_ref = /^([0-9]{2,4})*$/;
     var viaje_reg = /^([A-Z]{1}[0-9]{1,4})*$/;
 
     //realizamos funciones para que sea más práctico nuestro formulario
@@ -238,8 +238,8 @@ function validate_travel() {
     }
 
     //Utilizamos las expresiones regulares para la validación de errores JS
-    var date_reg = /^(0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])[- \/.](19|20)\d\d$/;
-    var precio_ref = /^[0-9]{2,4}$/;
+    var date_reg = /^(0?[1-9]|1[0-2])[-](0?[1-9]|[12]\d|3[01])[-](19|20)\d{2}$/;
+    var precio_ref = /^([0-9]{2,4})*$/;
     var viaje_reg = /^([A-Z]{1}[0-9]{1,4})*$/;
 
     $(".error").remove();
@@ -296,11 +296,11 @@ function validate_travel() {
         var data = {"idviaje": idviaje, "destino": destino, "precio": precio, "oferta": oferta, "tipo": tipo, "f_sal": f_sal, "f_lleg": f_lleg};
             
         var data_travels_JSON = JSON.stringify(data);
-        console.log(data_travels_JSON);
+        //console.log(data_travels_JSON);
         $.post('modules/travels/controller/controller_travels.class.php',
-                {alta_travels_json: data_travels_JSON},
+                {alta_travels_json:data_travels_JSON},
         function (response) {
-            console.log("0"+ response);
+           // console.log("0"+ response);
             if (response.success) {
                 window.location.href = response.redirect;
             }
@@ -309,9 +309,28 @@ function validate_travel() {
             //}); //para debuguear
         //}, "json").fail(function (xhr) {
         
-        }, "json").fail(function(xhr, status, error) {
+        }, "json").fail(function (xhr, textStatus, errorThrown ) {
             console.log("1 "+xhr.responseText);
-            console.log("2" +xhr.responseJSON);
+            console.log("2 "+xhr.responseJSON);
+            
+            if (xhr.status === 0) {
+                alert('Not connect: Verify Network.');
+            } else if (xhr.status == 404) {
+                alert('Requested page not found [404]');
+            } else if (xhr.status == 500) {
+                alert('Internal Server Error [500].');
+            } else if (textStatus === 'parsererror') {
+                alert('Requested JSON parse failed.');
+            } else if (textStatus === 'timeout') {
+                alert('Time out error.');
+            } else if (textStatus === 'abort') {
+                alert('Ajax request aborted.');
+            } else {
+                alert('Uncaught Error: ' + xhr.responseText);
+            }
+            
+            if (xhr.responseJSON == 'undefined' && xhr.responseJSON == null )
+                xhr.responseJSON = JSON.parse(xhr.responseText);
             
             if (xhr.responseJSON.error.idviaje)
                 $("#idviaje").focus().after("<span  class='error1'>" + xhr.responseJSON.error.idviaje + "</span>");
@@ -320,7 +339,7 @@ function validate_travel() {
                 $("#destino").focus().after("<span  class='error1'>" + xhr.responseJSON.error.destino + "</span>");
 
             if (xhr.responseJSON.error.precio)
-                $("#precio").focus().after("<span  class='error1'>" + xhr.responseJSON.error.precio + "</span>");
+                $("#destino").focus().after("<span  class='error1'>" + xhr.responseJSON.error.destino + "</span>");
 
             if (xhr.responseJSON.error.oferta)
                 $("#oferta").focus().after("<span  class='error1'>" + xhr.responseJSON.error.oferta + "</span>");
@@ -333,6 +352,9 @@ function validate_travel() {
 
             if (xhr.responseJSON.error.f_lleg)
                 $("#f_lleg").focus().after("<span  class='error1'>" + xhr.responseJSON.error.f_lleg + "</span>");
+
+            if (xhr.responseJSON.error_avatar)
+                $("#dropzone").focus().after("<span  class='error1'>" + xhr.responseJSON.error_avatar + "</span>");
 
             if (xhr.responseJSON.success1) {
                 if (xhr.responseJSON.img_avatar !== "/NiponTour/media/default-avatar.png") {
