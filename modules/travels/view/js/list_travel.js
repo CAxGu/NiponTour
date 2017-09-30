@@ -37,6 +37,14 @@ function pintar_travel(data) {
     var destino = document.createElement("div");
     destino.innerHTML = "destino = ";
     destino.innerHTML += data.travel.destino;
+
+    var destino_provincia = document.createElement("div");
+    destino_provincia.innerHTML = "destino_povincia = ";
+    destino_provincia.innerHTML += data.travel.destino_provincia;
+
+    var destino_ciudad = document.createElement("div");
+    destino_ciudad.innerHTML = "destino_ciudad = ";
+    destino_ciudad.innerHTML += data.travel.destino_ciudad;
     
     var precio = document.createElement("div");
     precio.innerHTML = "precio = ";
@@ -74,6 +82,8 @@ function pintar_travel(data) {
     parrafo.appendChild(msje);
     parrafo.appendChild(idviaje);
     parrafo.appendChild(destino);
+    parrafo.appendChild(destino_provincia);
+    parrafo.appendChild(destino_ciudad);
     parrafo.appendChild(precio);
     parrafo.appendChild(oferta);
     parrafo.appendChild(tipo);

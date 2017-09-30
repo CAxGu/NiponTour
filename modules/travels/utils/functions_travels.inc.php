@@ -36,10 +36,24 @@
         
         $resultado['oferta'] = $value['oferta'];
         $resultado['destino'] = $value['destino'];
+        $resultado['destino_provincia'] = $value['destino_provincia'];
+        $resultado['destino_ciudad'] = $value['destino_ciudad'];
         $resultado['tipo'] = $value['tipo'];
 
-        if ($_POST['destino'] === '') {
-            $error['destino'] = "Debes elegir un destino";
+        if ($_POST['destino'] === 'Seleccione Pais') {
+            $error['destino'] = "Debes elegir un pais";
+            $valido = false;
+        }
+
+
+        if ($_POST['destino_provincia'] === 'Seleccione Provincia') {
+            $error['destino_provincia'] = "Debes elegir una provincia";
+            $valido = false;
+        }
+
+
+        if ($_POST['destino_ciudad'] === 'Seleccione Ciudad') {
+            $error['destino_ciudad'] = "Debes elegir una ciudad";
             $valido = false;
         }
 
@@ -86,30 +100,13 @@
     return $return = array('resultado' => $valido, 'error' => $error, 'datos' => $resultado);
 }
 
-	 function validate_tipo($texto){
-        if(!isset($texto) || empty($texto)){
-            return false;
-        }else{
-            return true;
-        }
+	
+function validate_tipo($texto){
+    if(!isset($texto) || empty($texto)){
+        return false;
+    }else{
+        return true;
     }
+}
     
-    //Funcion para comparar 2 fechas
-    function valida_dates($start_days, $dayslight) {
-        
-            $start_day = date("m/d/Y", strtotime($start_days));
-            $daylight = date("m/d/Y", strtotime($dayslight));
-        
-            list($mes_one, $dia_one, $anio_one) = split('/', $start_day);
-            list($mes_two, $dia_two, $anio_two) = split('/', $daylight);
-        
-            $dateOne = new DateTime($anio_one . "-" . $mes_one . "-" . $dia_one);
-            $dateTwo = new DateTime($anio_two . "-" . $mes_two . "-" . $dia_two);
-        
-            if ($dateOne <= $dateTwo) {
-                return true;
-            }
-            return false;
-        }
-        
 ?>

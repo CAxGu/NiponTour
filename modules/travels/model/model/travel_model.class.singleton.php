@@ -1,8 +1,5 @@
 <?php
 
-/* $path = $_SERVER['DOCUMENT_ROOT'] . '/2ndoDAW/NiponTour/';
-define('SITE_ROOT', $path);
-require (SITE_ROOT . "modules/travels/model/BLL/travel_bll.class.singleton.php"); */
 require ($_SERVER['DOCUMENT_ROOT'] . '/2ndoDAW/NiponTour/modules/travels/model/BLL/travel_bll.class.singleton.php');
 
 class travel_model {
@@ -23,6 +20,17 @@ class travel_model {
         return $this->bll->create_travel_BLL($arrArgument);
     }
     
+    public function obtain_countries($url){
+        return $this->bll->obtain_countries_BLL($url);
+    }
+
+    public function obtain_provinces(){
+        return $this->bll->obtain_provinces_BLL();
+    }
+
+    public Function obtain_cities($arrArgument){
+        return $this->bll->obtain_cities_BLL($arrArgument);
+    }
 }
 
 

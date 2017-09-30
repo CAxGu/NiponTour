@@ -31,6 +31,8 @@ function alta_travels() {
         $arrArgument = array(
             'idviaje' => $result['datos']['idviaje'],
             'destino' => $result['datos']['destino'],
+            'destino_provincia' => $result['datos']['destino_provincia'],
+            'destino_ciudad' => $result['datos']['destino_ciudad'],
             'precio' => $result['datos']['precio'],
             'oferta' => $result['datos']['oferta'],
             'tipo' => $result['datos']['tipo'],
@@ -121,6 +123,61 @@ if ((isset($_GET["load_data"])) && ($_GET["load_data"] == true)) {
         exit;
     } else {
         $jsondata["travel"] = "";
+        echo json_encode($jsondata);
+        exit;
+    }
+}
+/////////////////////////////////////////////////// load_country
+if(  (isset($_GET["load_country"])) && ($_GET["load_country"] == true)  ){
+    $json = array();
+
+    $url = 'http://www.oorsprong.org/websamples.countryinfo/CountryInfoService.wso/ListOfCountryNamesByName/JSON';
+    $path_model=$_SERVER['DOCUMENT_ROOT'] . '/2ndoDAW/NiponTour/modules/travels/model/model/';
+    $json = loadModel($path_model, "travel_model", "obtain_countries", $url);
+    
+    if($json){
+        echo $json;
+        exit;
+    }else{
+        $json = "error";
+        echo $json;
+        exit;
+    }
+}
+
+/////////////////////////////////////////////////// load_provinces
+if(  (isset($_GET["load_provinces"])) && ($_GET["load_provinces"] == true)  ){
+    $jsondata = array();
+    $json = array();
+
+    $path_model=$_SERVER['DOCUMENT_ROOT'] . '/2ndoDAW/NiponTour/modules/travels/model/model/';
+    $json = loadModel($path_model, "travel_model", "obtain_provinces");
+
+    if($json){
+        $jsondata["provinces"] = $json;
+        echo json_encode($jsondata);
+        exit;
+    }else{
+        $jsondata["provinces"] = "error";
+        echo json_encode($jsondata);
+        exit;
+    }
+}
+
+/////////////////////////////////////////////////// load_cities
+if(  isset($_POST['idPoblac']) ){
+    $jsondata = array();
+    $json = array();
+
+    $path_model=$_SERVER['DOCUMENT_ROOT'] . '/2ndoDAW/NiponTour/modules/travels/model/model/';
+    $json = loadModel($path_model, "travel_model", "obtain_cities", $_POST['idPoblac']);
+
+    if($json){
+        $jsondata["cities"] = $json;
+        echo json_encode($jsondata);
+        exit;
+    }else{
+        $jsondata["cities"] = "error";
         echo json_encode($jsondata);
         exit;
     }

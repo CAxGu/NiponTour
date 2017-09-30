@@ -25,14 +25,17 @@ DROP TABLE IF EXISTS `travels`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `travels` (
-  `idviaje` varchar(255) DEFAULT NULL,
-  `destino` varchar(255) DEFAULT NULL,
+  `idviaje` varchar(255) NOT NULL,
+  `pais` varchar(255) DEFAULT NULL,
+  `provincia` varchar(255) DEFAULT NULL,
+  `ciudad` varchar(255) DEFAULT NULL,
   `precio` varchar(255) DEFAULT NULL,
   `oferta` varchar(20) DEFAULT NULL,
   `tipo` varchar(255) DEFAULT NULL,
   `f_sal` varchar(255) DEFAULT NULL,
   `f_lleg` varchar(255) DEFAULT NULL,
-  `avatar` varchar(255) DEFAULT NULL
+  `avatar` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`idviaje`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -54,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-29 15:57:46
+-- Dump completed on 2017-09-30 16:02:26

@@ -26,15 +26,19 @@
                     <br />
                     <div class="form-group">
                     <label>Destino *</label>
+                        <br /><text>Pais:</text>
                         <select name="destino" id="destino" class="form-control">
-                            <option value="" selected>Seleccione el Destino</option>
-                            <option value="España" <?php if($_POST['destino']==="España") echo 'selected'?>>España</option>
-                            <option value="Francia" <?php if($_POST['destino']==="Francia") echo 'selected'?>>Francia</option>
-                            <option value="Portugal" <?php if($_POST['destino']==="Portugal") echo 'selected'?>>Portugal</option>
-                            <option value="Andorra" <?php if($_POST['destino']==="Andorra") echo 'selected'?>>Andorra</option>
-                            <option value="Argentina" <?php if($_POST['destino']==="Argentina") echo 'selected'?>>Argentina</option>
-                            <option value="Bélgica" <?php if($_POST['destino']==="Bélgica") echo 'selected'?>>Bélgica</option>
-                            <option value="China" <?php if($_POST['destino']==="China") echo 'selected'?>>China</option>
+                            <option selected>Seleccione Pais</option>
+                        </select>
+                        <div id="e_destino"></div>
+                        <text>Provincia:</text>
+                        <select name="destino_provincia" id="destino_provincia" class="form-control">
+                            <option selected>Seleccione Provincia</option>
+                        </select>
+                        <div id="e_destino"></div>
+                        <text>Ciudad:</text>
+                        <select name="destino_ciudad" id="destino_ciudad" class="form-control">
+                            <option selected>Seleccione ciudad</option>
                         </select>
                         <div id="e_destino"></div>
                     </div>
